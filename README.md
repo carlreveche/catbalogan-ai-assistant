@@ -72,10 +72,11 @@ panel — no PHP changes needed to extend the bot.
    variables in Apache/PHP or the hosting provider's environment settings; the
    application does not load `.env` files automatically.
 4. Do not commit a local environment file or place secrets in PHP files.
-5. Import the project's database schema and seed data into MySQL before
-   opening the application. This source snapshot does not include an installer
-   or SQL dump, so obtain/export those files separately before deployment.
-6. Promote a user to admin after registration:
+5. Create the database `catbalogan_ai_assistant` in MySQL/phpMyAdmin, then
+   import `database/schema.sql` followed by `database/seed_data.sql`. If you
+   already have a working local database, do not import the schema over it;
+   keep your existing data and use the SQL files for fresh installations.
+6. Register an account, then promote it to admin:
    `UPDATE users SET role = 'admin' WHERE email = 'you@example.com';`
 
 The default local database values are `localhost`, database
@@ -117,6 +118,9 @@ catbalogan-ai-assistant/
 │   ├── db.php                 # MySQL connection (PDO)
 │   ├── ai.php                 # Optional Groq settings
 │   └── google_auth.php        # Optional Google OAuth settings
+├── database/
+│   ├── schema.sql              # MySQL tables and indexes
+│   └── seed_data.sql           # Safe sample permits and KB entries
 ├── includes/
 │   └── functions.php          # Auth + CSRF + Google OAuth + AI engine
 ├── google_auth/

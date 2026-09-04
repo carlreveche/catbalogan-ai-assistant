@@ -1,4 +1,3 @@
-
 # AI-Based Virtual Assistant for the Municipality of Catbalogan
 
 A PHP + MySQL web app that lets citizens create an account, chat with a

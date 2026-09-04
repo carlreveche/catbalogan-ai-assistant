@@ -1,0 +1,18 @@
+# Block direct web access to sensitive directories
+RedirectMatch 403 ^/(?:.*/)?(config|includes|database|tests)/.*$
+
+# Block raw source/data files
+<FilesMatch "\.(sql|md|log|ini)$">
+  Require all denied
+</FilesMatch>
+
+# Basic security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Disable directory listing
+Options -Indexes

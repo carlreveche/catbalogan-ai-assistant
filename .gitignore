@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+config/*local*
+install.lock
+*.log
+*.sql.bak
+Thumbs.db
+.DS_Store
